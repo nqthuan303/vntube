@@ -145,11 +145,6 @@ export class ListComponent implements OnInit {
             obj.fullAddress = fullAddress;
         }
 
-        if (obj.client_id) {
-            let clientName = obj.client_id.name;
-            obj.client_name = clientName;
-        }
-
         if (obj.createdBy) {
             const nameOfCreater = obj.createdBy.name;
             obj.nameOfCreater = nameOfCreater;
