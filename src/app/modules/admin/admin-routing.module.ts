@@ -10,6 +10,9 @@ import { FormUserComponent } from './components/user/form/formUser.component';
 import { FormUserResolve } from './components/user/form/formUser.resolve';
 import { UserResolve } from '../../shared/resolves/user.resolve';
 
+import { ListPostComponent } from './components/post/list/listPost.component';
+import { FormPostComponent } from './components/post/form/formPost.component';
+
 import { AuthGuard } from '../../auth-guard.service';
 
 let userRoutes = {
@@ -32,6 +35,20 @@ let userRoutes = {
   ]
 };
 
+let postRoutes = {
+  path: 'post',
+  children: [
+    { path: '', component: ListPostComponent },
+    {
+      path: 'form', component: FormPostComponent
+    },
+    {
+      path: 'form/:id', component: FormPostComponent
+    }
+  ]
+};
+
+
 let indexRoutes = { path: 'index', component: IndexComponent };
 
 const adminRoutes: Routes = [
@@ -43,7 +60,7 @@ const adminRoutes: Routes = [
       {
         path: '',
         canActivateChild: [AuthGuard],
-        children: [indexRoutes, userRoutes]
+        children: [indexRoutes, userRoutes, postRoutes]
       }
     ]
   },

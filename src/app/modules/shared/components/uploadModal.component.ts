@@ -3,22 +3,21 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
     moduleId: module.id,
-    selector: 'confirm-modal',
-    templateUrl: './confirmModal.component.html'
+    selector: 'upload-modal',
+    templateUrl: './uploadModal.component.html'
 })
-export class ConfirmModalComponent {
+export class UploadModalComponent {
 
     @ViewChild('modalDirective') private modalDirective: ModalDirective;
     confirmTitle: string;
     @Output() onConfirm = new EventEmitter<boolean>();
 
     showModal(options: any) {
-        this.confirmTitle = options.confirmTitle;
         this.modalDirective.show();
     }
 
     hideModal() {
-        this.modalDirective.hide();
+        // this.modalDirective.hide();
     }
 
     confirm() {

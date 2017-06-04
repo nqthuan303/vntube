@@ -12,6 +12,7 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { UserService } from '../../shared/services/user.service';
 import { DistrictService } from '../../shared/services/district.service';
 import { WardService } from '../../shared/services/ward.service';
+import { PostService } from '../../shared/services/post.service';
 
 /*========== import resolves ===========*/
 import { UserResolve } from '../../shared/resolves/user.resolve';
@@ -32,6 +33,9 @@ import { IndexComponent } from './components/index/index.component';
 import { ListUserComponent } from './components/user/list/listUser.component';
 import { FormUserComponent } from './components/user/form/formUser.component';
 
+import { ListPostComponent } from './components/post/list/listPost.component';
+import { FormPostComponent } from './components/post/form/formPost.component';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -42,6 +46,8 @@ import { FormUserComponent } from './components/user/form/formUser.component';
     IndexComponent,
     FormUserComponent,
     ListUserComponent,
+    ListPostComponent,
+    FormPostComponent,
     SafeHtmlPipe,
     ProcessHtmlColumnPipe
   ],
@@ -60,7 +66,8 @@ import { FormUserComponent } from './components/user/form/formUser.component';
     FormUserResolve,
     DistrictResolve,
     UserService,
-    UserResolve
+    UserResolve,
+    PostService
   ]
 })
 export class AdminModule { }

@@ -18,6 +18,17 @@
                     <li routerLinkActive="active"><a routerLink="/admin/user/form">Thêm User</a></li>
                 </ul>
             </li>
+
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Quản lý bài viết</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><a routerLink="/admin/post">Danh sách bài viết</a></li>
+                    <li routerLinkActive="active"><a routerLink="/admin/post/form">Thêm bài viết</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </aside>
