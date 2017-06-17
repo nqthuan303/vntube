@@ -1,0 +1,23 @@
+ .my-drop-zone {
+   border: dotted 3px lightgray;
+ }
+
+ .nv-file-over {
+   border: dotted 3px red;
+ }
+
+ .file-container {
+   max-height: 420px;
+   overflow-y: scroll;
+ }
+
+ .file-item {
+   float: left;
+    position: relative;
+    width: 18%;
+    padding-bottom: 15%;
+    margin: 1%;
+    background-color: #1E1E1E;
+    overflow: hidden;
+    cursor: pointer;
+ }

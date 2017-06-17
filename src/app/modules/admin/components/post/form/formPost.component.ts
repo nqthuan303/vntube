@@ -17,7 +17,7 @@ declare var tinymce: any;
     templateUrl: './formPost.component.html'
 })
 export class FormPostComponent {
-    @ViewChild('uploadModal') private uploadModal: any;
+    @ViewChild('fileModal') private fileModal: any;
     objForm: FormGroup;
     objData: PostModel = new PostModel();
     submited: boolean;
@@ -63,24 +63,23 @@ export class FormPostComponent {
     ngAfterViewInit() {
         tinymce.init({
             selector: '#postContent',
-            toolbar: 'mybutton',
+            toolbar: 'uploadFile',
             plugins: ['link', 'paste', 'table'],
             skin_url: '../../assets/skins/lightgray',
             setup: editor => {
                 this.editor = editor;
                 let $this = this;
-                editor.addButton('mybutton', {
-                    text: 'My button',
-                    icon: true,
+                editor.addButton('uploadFile', {
+                    text: '',
+                    icon: 'image',
                     onclick: function () {
-                        $this.uploadModal.showModal();
+                        $this.fileModal.showModal();
                     }
                 });
 
                 editor.on('keyup', () => {
                     const content = editor.getContent();
                     this.objData.content = content;
-                    //   this.onEditorKeyup.emit(content);
                 });
             },
         });
