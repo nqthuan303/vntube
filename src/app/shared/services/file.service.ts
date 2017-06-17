@@ -19,7 +19,7 @@ export class FileService {
         let headers = new Headers();
         headers.append('Authorization', token);
 
-        let url: string = URL + '/file/list?type=' + type;
+        let url: string = URL + '/file/list';
 
         if(type != '') {
             url += '?type=' + type;

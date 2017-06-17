@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../shared/services/file.service';
 
-import { URL } from '../../../shared/services/app.config';
+import { URL, SERVER_URL } from '../../../shared/services/app.config';
 
 @Component({
     selector: 'file-manager',
@@ -14,13 +14,14 @@ export class FileManagerComponent implements OnInit {
     hasBaseDropZoneOver: boolean = false;
     hasAnotherDropZoneOver: boolean = false;
     itemsInDir: Array<any> = new Array<any>();
-
+    serverUrl: string;
     constructor(private service: FileService) {
         this.uploader.onCompleteItem = (item, response, status, header) => {
             if (status === 200) {
                 this.getList();
             }
         }
+        this.serverUrl = SERVER_URL;
     }
     ngOnInit() {
 
@@ -28,7 +29,7 @@ export class FileManagerComponent implements OnInit {
 
     getList() {
         let $this = this;
-        this.service.listItems('').then(function (result) {
+        this.service.listItems('image').then(function (result) {
             $this.itemsInDir = result;
         });
     }

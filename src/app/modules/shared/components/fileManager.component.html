@@ -33,9 +33,12 @@
 
   <div class="col-md-9 file-container">
     <div *ngFor="let itemInDir of itemsInDir" class="file-item">
-        <div class="square-content">
+        <div class="file-item-content">
+          <i *ngIf="itemInDir.type === 'folder'" class="fa fa-folder-o file-icon"></i>
+          <img *ngIf="itemInDir.type === 'file'" [src]="serverUrl + '/' + itemInDir.url" />
+          <p>{{itemInDir.name}}</p>
         </div>
-        {{itemInDir.name}}
+        
     </div>
 
   </div>
