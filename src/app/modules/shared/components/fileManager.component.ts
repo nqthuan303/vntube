@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { FileService } from '../../../shared/services/file.service';
 
@@ -15,6 +15,9 @@ export class FileManagerComponent implements OnInit {
     hasAnotherDropZoneOver: boolean = false;
     itemsInDir: Array<any> = new Array<any>();
     serverUrl: string;
+    arrClicked: Array<any> = new Array<any>();
+    @Output() onClickedImage = new EventEmitter<any>();
+
     constructor(private service: FileService) {
         this.uploader.onCompleteItem = (item, response, status, header) => {
             if (status === 200) {
@@ -31,7 +34,28 @@ export class FileManagerComponent implements OnInit {
         let $this = this;
         this.service.listItems('image').then(function (result) {
             $this.itemsInDir = result;
+
+            for(let i=0; i< result.length; i++) {
+                $this.arrClicked.push({
+                    url: $this.serverUrl + '/' + result[i].url,
+                    clicked: false
+                });
+            }
+
         });
+    }
+
+    onClickImage(index: number, event){
+        if(event.ctrlKey) {
+            this.arrClicked[index].clicked = !this.arrClicked[index].clicked;
+        }else{
+            let currentClicked = this.arrClicked[index].clicked;
+            for(let i=0; i< this.arrClicked.length; i++){
+                this.arrClicked[i].clicked = false;
+            }
+            this.arrClicked[index].clicked = !currentClicked;
+        }
+        this.onClickedImage.emit(this.arrClicked);
     }
 
     fileOverBase(e: any): void {

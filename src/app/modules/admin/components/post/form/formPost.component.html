@@ -111,5 +111,5 @@
             </button>
         </div>
     </div>
-    <file-modal #fileModal></file-modal>
+    <file-modal (onConfirm)="onFileModalConfirm($event)" #fileModal></file-modal>
 </form>

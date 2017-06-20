@@ -8,7 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <file-manager #fileManager></file-manager>
+                <file-manager 
+                    (onClickedImage)="onClickedImage($event)"
+                    #fileManager></file-manager>
             </div>
             <div class="modal-footer">
                 <button (click)="modalDirective.hide()" class="btn btn-danger btn-xs" type="button">

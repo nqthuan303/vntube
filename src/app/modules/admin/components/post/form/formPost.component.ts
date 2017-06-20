@@ -89,6 +89,20 @@ export class FormPostComponent {
         tinymce.remove(this.editor);
     }
 
+    onFileModalConfirm(arrImage: any) {
+        let imageHtml = '';
+        for (let i = 0; i < arrImage.length; i++) {
+            let image = arrImage[i];
+            if (image.clicked) {
+                imageHtml += '<img height="42" width="42" src="' + image.url + '"/>';
+            }
+
+        }
+        tinymce.execCommand('mceInsertContent', false, imageHtml);
+
+        this.fileModal.hideModal();
+    }
+
     formAction() {
         this.submited = true;
         if (!this.objForm.valid) {

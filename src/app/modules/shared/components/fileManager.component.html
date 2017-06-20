@@ -32,7 +32,10 @@
   </div>
 
   <div class="col-md-9 file-container">
-    <div *ngFor="let itemInDir of itemsInDir" class="file-item">
+    <div 
+      [ngClass]="{'image-clicked': arrClicked[i].clicked}" 
+      (click)="onClickImage(i, $event)" 
+      *ngFor="let itemInDir of itemsInDir; let i=index" class="file-item">
         <div class="file-item-content">
           <i *ngIf="itemInDir.type === 'folder'" class="fa fa-folder-o file-icon"></i>
           <img *ngIf="itemInDir.type === 'file'" [src]="serverUrl + '/' + itemInDir.url" />

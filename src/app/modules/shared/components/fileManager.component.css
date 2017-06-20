@@ -21,6 +21,10 @@
    cursor: pointer;
  }
 
+ .image-clicked {
+   border: 1px dotted;
+ }
+
  .file-item-content {
    position: absolute;
    text-align: center;

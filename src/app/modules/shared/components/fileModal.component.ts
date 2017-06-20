@@ -12,7 +12,8 @@ export class FileModalComponent {
     @ViewChild('fileManager') private fileManager: any;
 
     confirmTitle: string;
-    @Output() onConfirm = new EventEmitter<boolean>();
+    @Output() onConfirm = new EventEmitter<any>();
+    arrClicked: Array<any> = new Array<any>();
 
     showModal(options: any) {
         this.modalDirective.show();
@@ -20,10 +21,14 @@ export class FileModalComponent {
     }
 
     hideModal() {
-        // this.modalDirective.hide();
+        this.modalDirective.hide();
+    }
+
+    onClickedImage(event) {
+        this.arrClicked = event;
     }
 
     confirm() {
-        this.onConfirm.emit(true);
+        this.onConfirm.emit(this.arrClicked);
     }
 }
