@@ -63,9 +63,10 @@ export class FormPostComponent {
     ngAfterViewInit() {
         tinymce.init({
             selector: '#postContent',
-            toolbar: 'uploadFile',
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | fontsizeselect uploadFile',
             plugins: ['link', 'paste', 'table'],
             skin_url: '../../assets/skins/lightgray',
+            height : "320",
             setup: editor => {
                 this.editor = editor;
                 let $this = this;
