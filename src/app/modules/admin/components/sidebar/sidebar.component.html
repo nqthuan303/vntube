@@ -29,6 +29,22 @@
                     <li routerLinkActive="active"><a routerLink="/admin/post/form">Thêm bài viết</a></li>
                 </ul>
             </li>
+
+            <li class="sub-menu">
+                <a routerLinkActive="active">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>Quản lý category</span>
+                </a>
+                <ul routerLinkActive="show" class="sub">
+                    <li [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+                        <a routerLink="/admin/category">Danh sách category</a>
+                    </li>
+                    <li routerLinkActive="active">
+                        <a routerLink="/admin/category/form">Thêm category</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </aside>

@@ -13,6 +13,9 @@ import { UserResolve } from '../../shared/resolves/user.resolve';
 import { ListPostComponent } from './components/post/list/listPost.component';
 import { FormPostComponent } from './components/post/form/formPost.component';
 
+import { ListCategoryComponent } from './components/category/list/listCategory.component';
+import { FormCategoryComponent } from './components/category/form/formCategory.component';
+
 import { AuthGuard } from '../../auth-guard.service';
 
 let userRoutes = {
@@ -48,6 +51,19 @@ let postRoutes = {
   ]
 };
 
+let categoryRoutes = {
+  path: 'category',
+  children: [
+    { path: '', component: ListCategoryComponent },
+    {
+      path: 'form', component: FormCategoryComponent
+    },
+    {
+      path: 'form/:id', component: FormCategoryComponent
+    }
+  ]
+};
+
 
 let indexRoutes = { path: 'index', component: IndexComponent };
 
@@ -60,7 +76,7 @@ const adminRoutes: Routes = [
       {
         path: '',
         canActivateChild: [AuthGuard],
-        children: [indexRoutes, userRoutes, postRoutes]
+        children: [indexRoutes, userRoutes, postRoutes, categoryRoutes]
       }
     ]
   },

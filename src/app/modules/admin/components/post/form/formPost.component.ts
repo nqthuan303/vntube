@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewContainerRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CustomValidators } from 'ng2-validation';
@@ -37,6 +37,8 @@ export class FormPostComponent {
         this.toastr.setRootViewContainerRef(vcr);
         this.objForm = formBuilder.group({
             'title': ['', [Validators.required]],
+            'category': ['', [Validators.required]],
+            'shortDescription': ['', [Validators.required]],
             'content': ['', [Validators.required]],
             'image': ['', [Validators.required]],
             'status': ['']
@@ -60,10 +62,21 @@ export class FormPostComponent {
         }
     }
 
+    selectCategory() {
+
+    }
+
+    deselectCategory() {
+
+    }
+    
     ngAfterViewInit() {
         tinymce.init({
             selector: '#postContent',
-            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | fontsizeselect uploadFile',
+            toolbar: `undo redo | styleselect | bold italic | 
+                      alignleft aligncenter alignright alignjustify | 
+                      bullist numlist outdent indent | table | 
+                      fontsizeselect uploadFile`,
             plugins: ['link', 'paste', 'table'],
             skin_url: '../../assets/skins/lightgray',
             height : "320",
@@ -84,6 +97,34 @@ export class FormPostComponent {
                 });
             },
         });
+
+        tinymce.init({
+            selector: '#shortDescription',
+            toolbar: `undo redo | styleselect | bold italic | 
+                      alignleft aligncenter alignright alignjustify | 
+                      bullist numlist outdent indent | table | 
+                      fontsizeselect uploadFile`,
+            plugins: ['link', 'paste', 'table'],
+            skin_url: '../../assets/skins/lightgray',
+            height : "150",
+            setup: editor => {
+                this.editor = editor;
+                let $this = this;
+                editor.addButton('uploadFile', {
+                    text: '',
+                    icon: 'image',
+                    onclick: function () {
+                        $this.fileModal.showModal();
+                    }
+                });
+
+                editor.on('keyup', () => {
+                    const content = editor.getContent();
+                    this.objData.shortDescription = content;
+                });
+            },
+        });
+
     }
 
     ngOnDestroy() {

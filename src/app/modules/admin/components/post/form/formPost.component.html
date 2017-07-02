@@ -11,16 +11,35 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label for="shopName" class="control-label col-md-3">Tên bài viết (*)</label>
-                        <div class="col-md-3 col-xs-11">
+                        <div class="col-md-5 col-xs-11">
                             <input 
                                 formControlName="title" 
                                 [(ngModel)]="objData.title" 
-                                id="postTitle" 
                                 class="form-control form-control-inline input-medium" 
                                 size="16" type="text" />
 
                             <p class="error-message" 
                                 *ngIf="objForm.controls.title.errors?.required && submited">
+                                Vui lòng nhập tên bài viết
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shopName" class="control-label col-md-3">Danh mục bài viết</label>
+                        <div class="col-md-5 col-xs-11">
+                            <ng-select 
+                                [(ngModel)]="objData.category"
+                                [options]="categoryList" 
+                                placeholder="" 
+                                formControlName="category" 
+                                (selected)="selectCategory($event.value)"
+                                (deselected)="deselectCategory()" 
+                                [allowClear]="true">
+                            </ng-select>
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.category.errors?.required && submited">
                                 Vui lòng nhập tên bài viết
                             </p>
                         </div>
@@ -44,13 +63,30 @@
                     <div class="form-group">
                         <label for="shopName" class="control-label col-md-3">Hình ảnh (*)</label>
                         <div class="col-md-9 col-xs-11">
-
+                            <input type="file" [(ngModel)]="objData.image" formControlName="image" />
                             <p class="error-message" 
                                 *ngIf="objForm.controls.image.errors?.required && submited">
                                 Vui lòng upload hình ảnh cho bài viết
                             </p>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="shopName" class="control-label col-md-3">Mô tả ngắn</label>
+                        <div class="col-md-9 col-xs-11">
+                            <textarea 
+                                formControlName="shortDescription" 
+                                [(ngModel)]="objData.shortDescription" 
+                                id="shortDescription" >
+                            </textarea>
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.shortDescription.errors?.required && submited">
+                                Vui lòng nhập mô tả ngắn
+                            </p>
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="shopName" class="control-label col-md-3">Nội dung (*)</label>

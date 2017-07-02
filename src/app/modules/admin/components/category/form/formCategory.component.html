@@ -1,0 +1,108 @@
+<form [formGroup]="objForm" role="form" (ngSubmit)="formAction()" class="form-horizontal tasi-form">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin chung
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="shopName" class="control-label col-md-3">Tên danh mục (*)</label>
+                        <div class="col-md-5 col-xs-11">
+                            <input 
+                                formControlName="name" 
+                                [(ngModel)]="objData.name" 
+                                class="form-control form-control-inline input-medium" 
+                                size="16" type="text" />
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.name.errors?.required && submited">
+                                Vui lòng nhập tên danh mục
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="shopName" class="control-label col-md-3">Danh mục cha</label>
+                        <div class="col-md-4 col-xs-11">
+                            <ng-select 
+                                [(ngModel)]="objData.parent"
+                                [options]="parentList"
+                                placeholder=""
+                                formControlName="parent"
+                                (selected)="selectParent($event.value)"
+                                (deselected)="deselectParent()"
+                                [allowClear]="true">
+                            </ng-select>
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.parent.errors?.required && submited">
+                                Vui lòng chọn danh mục cha
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    Thông tin khác
+                    <span class="tools pull-right">
+                    <a class="fa fa-chevron-down"></a>
+                </span>
+                </header>
+                <div class="panel-body">
+
+                   <div class="form-group">
+                        <label for="shopName" class="control-label col-md-3">Mô tả</label>
+                        <div class="col-md-9 col-xs-11">
+                            <textarea 
+                                formControlName="description" 
+                                [(ngModel)]="objData.description" 
+                                id="description" >
+                            </textarea>
+
+                            <p class="error-message" 
+                                *ngIf="objForm.controls.description.errors?.required && submited">
+                                Vui lòng nhập mô tả
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status" class="control-label col-md-3">Trạng thái: </label>
+                        <div class="col-md-3 col-xs-11">
+                            <select id="status" formControlName="status" [(ngModel)]="objData.status" class="form-control">
+                                <option value="1">Hoạt động</option>
+                                <option value="2">Không hoạt động</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <button routerLink="/admin/category" class="btn btn-danger btn-custom pull-left" type="button">
+                <i class="fa fa-arrow-left"></i> Back
+            </button>
+        </div>
+        <div class="col-sm-6">
+            <button class="btn btn-default btn-custom pull-right" type="submit">
+                <i class="fa fa-floppy-o"></i> Save
+            </button>
+        </div>
+    </div>
+    <file-modal (onConfirm)="onFileModalConfirm($event)" #fileModal></file-modal>
+</form>

@@ -13,6 +13,7 @@ import { UserService } from '../../shared/services/user.service';
 import { DistrictService } from '../../shared/services/district.service';
 import { WardService } from '../../shared/services/ward.service';
 import { PostService } from '../../shared/services/post.service';
+import { CategoryService } from '../../shared/services/category.service';
 
 /*========== import resolves ===========*/
 import { UserResolve } from '../../shared/resolves/user.resolve';
@@ -36,6 +37,9 @@ import { FormUserComponent } from './components/user/form/formUser.component';
 import { ListPostComponent } from './components/post/list/listPost.component';
 import { FormPostComponent } from './components/post/form/formPost.component';
 
+import { ListCategoryComponent } from './components/category/list/listCategory.component';
+import { FormCategoryComponent } from './components/category/form/formCategory.component';
+
 @NgModule({
   declarations: [
     AdminComponent,
@@ -48,6 +52,8 @@ import { FormPostComponent } from './components/post/form/formPost.component';
     ListUserComponent,
     ListPostComponent,
     FormPostComponent,
+    ListCategoryComponent,
+    FormCategoryComponent,
     SafeHtmlPipe,
     ProcessHtmlColumnPipe
   ],
@@ -63,6 +69,7 @@ import { FormPostComponent } from './components/post/form/formPost.component';
   providers: [
     DistrictService,
     WardService,
+    CategoryService,
     FormUserResolve,
     DistrictResolve,
     UserService,
